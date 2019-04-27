@@ -13,11 +13,14 @@
     <!--非注册中心-->
     <!--<dubbo:registry address="N/A"/>
     <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider"
-    url="dubbo://192.168.230.1:20880/com.omen.service.OrderService"/>-->
+    url="dubbo://192.168.230.1:20880/com.omen.service.OrderService"/>
+    <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider2"
+                     url="hessian://192.168.230.1:8090/com.omen.service.OrderService2"/>-->
 
     <!--注册中心-->
-    <!--<dubbo:registry address="zookeeper://192.168.230.130:2181?backup=192.168.230.135:2181,192.168.230.137:2181"/>-->
+    <dubbo:registry address="zookeeper://192.168.230.130:2181?backup=192.168.230.135:2181,192.168.230.137:2181"/>
     <dubbo:registry protocol="zookeeper" address="192.168.230.130:2181,192.168.230.135:2181,192.168.230.137:2181"/>
-    <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider"/>
+    <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider" check="false" protocol="dubbo"/>
+    <dubbo:reference interface="com.omen.service.OrderService2" id="orderProvider2" check="false" protocol="hessian"/>
 
 </beans>

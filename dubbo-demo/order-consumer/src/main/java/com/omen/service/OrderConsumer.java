@@ -17,6 +17,9 @@ public class OrderConsumer {
         System.out.println(response);
         Response response2 = orderService.doOrder2(new Request());
         System.out.println(response2);
+        OrderService2 orderService2 = (OrderService2) context.getBean("orderProvider2");
+        String result = orderService2.doQuery("kaixin");
+        System.out.println(result);
 
     }
 }
