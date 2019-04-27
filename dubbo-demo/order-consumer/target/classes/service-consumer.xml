@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:zookeeper="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-autowire="byName">
+    <dubbo:application name="order-consumer" owner="kaixin"/>
+
+    <!--<dubbo:protocol name="dubbo" port="20880" />-->
+
+    <!--非注册中心-->
+    <!--<dubbo:registry address="N/A"/>
+    <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider"
+    url="dubbo://192.168.230.1:20880/com.omen.service.OrderService"/>-->
+
+    <!--注册中心-->
+    <!--<dubbo:registry address="zookeeper://192.168.230.130:2181?backup=192.168.230.135:2181,192.168.230.137:2181"/>-->
+    <dubbo:registry protocol="zookeeper" address="192.168.230.130:2181,192.168.230.135:2181,192.168.230.137:2181"/>
+    <dubbo:reference interface="com.omen.service.OrderService" id="orderProvider"/>
+
+</beans>
